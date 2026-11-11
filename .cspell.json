@@ -1,0 +1,10 @@
+{
+  "version": "0.2",
+  "language": "en",
+  "words": ["devcontainer", "devcontainers", "dvirtz", "Yitzchaki", "sshd", "vsce", "xvfb", "commitlint", "automocks", "WHATWG"],
+  "ignorePaths": ["node_modules/**", "dist/**", ".vscode-test/**", "test/fixtures/**"],
+  "languageSettings": [{
+    "languageId": "markdown",
+    "ignoreRegExpList": ["/`.*?`/", "/(```+)[\\s\\S]+?\\1/g"]
+  }]
+}

@@ -1,0 +1,87 @@
+name: Main
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest]
+        vscode: ['1.91.1', stable]
+    runs-on: ${{ matrix.os }}
+    env:
+      HUSKY: '0'
+      VSCODE_VERSION: ${{ matrix.vscode }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Static checks
+        run: |
+          npm run lint
+          npm run spellcheck
+      - run: xvfb-run -a npm test
+        if: runner.os == 'Linux'
+      - run: npm test
+        if: runner.os != 'Linux'
+      - run: npm run package
+      - uses: actions/upload-artifact@v7
+        if: matrix.os == 'ubuntu-latest' && matrix.vscode == 'stable'
+        with:
+          name: vscode-package
+          path: '*.vsix'
+          if-no-files-found: error
+
+  release:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+    env:
+      HUSKY: '0'
+      GH_TOKEN: ${{ secrets.RELEASE_PAT }}
+      VSCE_PAT: ${{ secrets.VSCE_PAT }}
+      OVSX_PAT: ${{ secrets.OVSX_PAT }}
+    steps:
+      - name: Check release credentials
+        shell: bash
+        run: |
+          missing=0
+          for variable in GH_TOKEN VSCE_PAT OVSX_PAT; do
+            if [[ -z "${!variable}" ]]; then
+              secret_name="$variable"
+              if [[ "$variable" == GH_TOKEN ]]; then
+                secret_name=RELEASE_PAT
+              fi
+              echo "::error::Missing repository secret: $secret_name"
+              missing=1
+            fi
+          done
+          exit "$missing"
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Release
+        run: npm run release

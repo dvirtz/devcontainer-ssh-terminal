@@ -1,0 +1,43 @@
+[
+  {
+    "name": "Remote-SSH bind mount (Dev Containers 0.472.0 format)",
+    "kind": "dev-container",
+    "payload": { "hostPath": "/home/dev/project", "configFile": { "scheme": "file", "path": "/home/dev/project/.devcontainer/devcontainer.json" } },
+    "parent": "ssh-remote+build-server",
+    "expected": { "host": "build-server", "hostPath": "/home/dev/project" }
+  },
+  {
+    "name": "Legacy string path with SSH parent",
+    "kind": "dev-container",
+    "payload": "/srv/project",
+    "parent": "ssh-remote+developer@build-server:2222",
+    "expected": { "host": "build-server", "user": "developer", "port": 2222, "hostPath": "/srv/project" }
+  },
+  {
+    "name": "Attached container with SSH parent",
+    "kind": "attached-container",
+    "payload": { "containerName": "/app", "cwd": "/not-a-verified-project" },
+    "parent": "ssh-remote+build-server",
+    "expected": { "host": "build-server" }
+  },
+  {
+    "name": "Volume-backed container with SSH parent",
+    "kind": "dev-container",
+    "payload": { "volumeName": "source", "folder": "app" },
+    "parent": "ssh-remote+build-server",
+    "expected": { "host": "build-server" }
+  },
+  {
+    "name": "Docker SSH endpoint ignores client hostPath",
+    "kind": "dev-container",
+    "payload": { "hostPath": "/Users/local/project", "settings": { "host": "ssh://dev@docker-host:2222" } },
+    "expected": { "host": "docker-host", "user": "dev", "port": 2222 }
+  },
+  {
+    "name": "Attached container with Docker context",
+    "kind": "attached-container",
+    "payload": { "containerName": "/app", "settings": { "context": "remote-build" } },
+    "contextEndpoint": "ssh://context-host",
+    "expected": { "host": "context-host" }
+  }
+]

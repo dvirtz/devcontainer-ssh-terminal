@@ -1,0 +1,12 @@
+**/.*
+**/.*/**
+src/**
+test/**
+dist/test/**
+dist/package.json
+**/*.ts
+**/*.map
+**/*.tsbuildinfo
+tsconfig.json
+package-lock.json
+node_modules/**

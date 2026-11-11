@@ -1,0 +1,79 @@
+{
+  "name": "devcontainer-ssh-terminal",
+  "displayName": "Devcontainer SSH Terminal",
+  "description": "Open an integrated terminal on the SSH host of your devcontainer.",
+  "publisher": "dvirtz",
+  "version": "0.1.0",
+  "license": "MIT",
+  "author": { "name": "Dvir Yitzchaki", "email": "dvirt@gmail.com", "url": "https://github.com/dvirtz" },
+  "repository": { "type": "git", "url": "https://github.com/dvirtz/devcontainer-ssh-terminal.git" },
+  "homepage": "https://github.com/dvirtz/devcontainer-ssh-terminal#readme",
+  "bugs": { "url": "https://github.com/dvirtz/devcontainer-ssh-terminal/issues" },
+  "engines": { "vscode": "^1.91.1" },
+  "categories": ["Other"],
+  "keywords": ["devcontainer", "ssh", "terminal", "remote"],
+  "extensionKind": ["ui"],
+  "main": "./dist/src/extension.js",
+  "contributes": {
+    "commands": [{
+      "command": "devcontainer-ssh-terminal.openHostTerminal",
+      "title": "Open SSH Host Terminal",
+      "category": "Dev Containers",
+      "enablement": "remoteName =~ /^(dev-container|attached-container)$/"
+    }],
+    "menus": {
+      "commandPalette": [{
+        "command": "devcontainer-ssh-terminal.openHostTerminal",
+        "when": "remoteName =~ /^(dev-container|attached-container)$/"
+      }]
+    }
+  },
+  "capabilities": {
+    "virtualWorkspaces": false,
+    "untrustedWorkspaces": { "supported": false }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run build",
+    "build": "tsc --build",
+    "pretest": "npm run build",
+    "test": "npm run unit && npm run integration",
+    "unit": "node --import tsx --import ./test/unit/automocks.ts --test test/unit/*.test.ts",
+    "preintegration": "npm run build",
+    "integration": "node --enable-source-maps ./dist/test/integration/runTests.js",
+    "lint": "eslint --max-warnings=0 \"src/**/*.ts\" \"test/**/*.ts\"",
+    "spellcheck": "cspell \"src/**/*.ts\" \"test/**/*.ts\" README.md",
+    "clean": "rimraf dist .vscode-test",
+    "package": "vsce package",
+    "prepare": "husky install",
+    "release": "semantic-release"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/commit-analyzer": "^13.0.1",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^11.0.6",
+    "@semantic-release/npm": "^12.0.2",
+    "@semantic-release/release-notes-generator": "^14.0.3",
+    "@types/node": "^20.19.0",
+    "@types/vscode": "1.91.0",
+    "@typescript-eslint/eslint-plugin": "^8.46.0",
+    "@typescript-eslint/parser": "^8.46.0",
+    "@vscode/test-electron": "^2.5.2",
+    "@vscode/vsce": "^3.7.0",
+    "conventional-changelog-conventionalcommits": "^8.0.0",
+    "cspell": "^8.19.0",
+    "eslint": "^8.57.1",
+    "husky": "^8.0.3",
+    "rimraf": "^5.0.10",
+    "semantic-release": "^24.2.0",
+    "semantic-release-vsce": "^6.1.8",
+    "tsx": "^4.20.0",
+    "typescript": "~5.9.3"
+  },
+  "commitlint": {
+    "extends": ["@commitlint/config-conventional"],
+    "rules": { "body-max-line-length": [2, "always", 200], "footer-max-line-length": [0, "always"] }
+  }
+}

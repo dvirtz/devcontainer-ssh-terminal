@@ -1,0 +1,11 @@
+{
+  "name": "Devcontainer SSH Terminal Development",
+  "build": { "dockerfile": "Dockerfile" },
+  "remoteUser": "node",
+  "postCreateCommand": "npm ci",
+  "customizations": {
+    "vscode": {
+      "extensions": ["dbaeumer.vscode-eslint", "streetsidesoftware.code-spell-checker"]
+    }
+  }
+}

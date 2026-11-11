@@ -1,0 +1,16 @@
+{
+  "include": ["src/**/*.ts", "test/**/*.ts", "package.json"],
+  "compilerOptions": {
+    "composite": true,
+    "module": "commonjs",
+    "target": "es2022",
+    "outDir": "dist",
+    "lib": ["es2022"],
+    "sourceMap": true,
+    "resolveJsonModule": true,
+    "strict": true,
+    "noUnusedLocals": true,
+    "esModuleInterop": true,
+    "types": ["node", "vscode"]
+  }
+}
