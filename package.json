@@ -3,34 +3,60 @@
   "displayName": "Devcontainer SSH Terminal",
   "description": "Open an integrated terminal on the SSH host of your devcontainer.",
   "publisher": "dvirtz",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "license": "MIT",
-  "author": { "name": "Dvir Yitzchaki", "email": "dvirt@gmail.com", "url": "https://github.com/dvirtz" },
-  "repository": { "type": "git", "url": "https://github.com/dvirtz/devcontainer-ssh-terminal.git" },
+  "author": {
+    "name": "Dvir Yitzchaki",
+    "email": "dvirt@gmail.com",
+    "url": "https://github.com/dvirtz"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dvirtz/devcontainer-ssh-terminal.git"
+  },
   "homepage": "https://github.com/dvirtz/devcontainer-ssh-terminal#readme",
-  "bugs": { "url": "https://github.com/dvirtz/devcontainer-ssh-terminal/issues" },
-  "engines": { "vscode": "^1.91.1" },
-  "categories": ["Other"],
-  "keywords": ["devcontainer", "ssh", "terminal", "remote"],
-  "extensionKind": ["ui"],
+  "bugs": {
+    "url": "https://github.com/dvirtz/devcontainer-ssh-terminal/issues"
+  },
+  "engines": {
+    "vscode": "^1.91.1"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "devcontainer",
+    "ssh",
+    "terminal",
+    "remote"
+  ],
+  "extensionKind": [
+    "ui"
+  ],
   "main": "./dist/src/extension.js",
   "contributes": {
-    "commands": [{
-      "command": "devcontainer-ssh-terminal.openHostTerminal",
-      "title": "Open SSH Host Terminal",
-      "category": "Dev Containers",
-      "enablement": "remoteName =~ /^(dev-container|attached-container)$/"
-    }],
-    "menus": {
-      "commandPalette": [{
+    "commands": [
+      {
         "command": "devcontainer-ssh-terminal.openHostTerminal",
-        "when": "remoteName =~ /^(dev-container|attached-container)$/"
-      }]
+        "title": "Open SSH Host Terminal",
+        "category": "Dev Containers",
+        "enablement": "remoteName =~ /^(dev-container|attached-container)$/"
+      }
+    ],
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "devcontainer-ssh-terminal.openHostTerminal",
+          "when": "remoteName =~ /^(dev-container|attached-container)$/"
+        }
+      ]
     }
   },
   "capabilities": {
     "virtualWorkspaces": false,
-    "untrustedWorkspaces": { "supported": false }
+    "untrustedWorkspaces": {
+      "supported": false
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run build",
@@ -73,7 +99,19 @@
     "typescript": "~5.9.3"
   },
   "commitlint": {
-    "extends": ["@commitlint/config-conventional"],
-    "rules": { "body-max-line-length": [2, "always", 200], "footer-max-line-length": [0, "always"] }
+    "extends": [
+      "@commitlint/config-conventional"
+    ],
+    "rules": {
+      "body-max-line-length": [
+        2,
+        "always",
+        200
+      ],
+      "footer-max-line-length": [
+        0,
+        "always"
+      ]
+    }
   }
 }
