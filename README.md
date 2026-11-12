@@ -1,4 +1,4 @@
-[![Main](https://github.com/dvirtz/devcontainer-ssh-terminal/workflows/Main/badge.svg)](https://github.com/dvirtz/devcontainer-ssh-terminal/actions?query=workflow%3AMain) [![Visual Studio Marketplace Version](https://img.shields.io/github/v/release/dvirtz/devcontainer-ssh-terminal?label=Visual%20Studio%20Marketplace)](https://marketplace.visualstudio.com/items?itemName=dvirtz.devcontainer-ssh-terminal) [![Open VSX Version](https://img.shields.io/open-vsx/v/dvirtz/devcontainer-ssh-terminal)](https://open-vsx.org/extension/dvirtz/devcontainer-ssh-terminal)
+[![Main](https://github.com/dvirtz/devcontainer-ssh-terminal/workflows/Main/badge.svg)](https://github.com/dvirtz/devcontainer-ssh-terminal/actions?query=workflow%3AMain) [![Visual Studio Marketplace Version](https://badgen.net/vs-marketplace/v/dvirtz.devcontainer-ssh-terminal)](https://marketplace.visualstudio.com/items?itemName=dvirtz.devcontainer-ssh-terminal) [![Open VSX Version](https://badgen.net/open-vsx/version/dvirtz/devcontainer-ssh-terminal?label=Open%20VSX)](https://open-vsx.org/extension/dvirtz/devcontainer-ssh-terminal)
 
 # Devcontainer SSH Terminal
 
