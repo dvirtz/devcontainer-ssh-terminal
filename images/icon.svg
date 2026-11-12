@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <title>Devcontainer SSH Terminal</title>
+  <desc>An isometric blue container cube with a white terminal prompt on its right face.</desc>
+  <!-- Equal 216-unit edges, projected at 30, 150, and 270 degrees. -->
+  <g stroke="#081a30" stroke-width="12" stroke-linejoin="round">
+    <path fill="#279cff" d="M256 40 443.061487 148 256 256 68.938513 148Z"/>
+    <path fill="#0879dc" d="M68.938513 148 256 256 256 472 68.938513 364Z"/>
+    <path fill="#081a30" d="M256 256 443.061487 148 443.061487 364 256 472Z"/>
+  </g>
+  <!-- Project all terminal geometry onto the same plane as the right face. -->
+  <g transform="matrix(.8660254038 -.5 0 1 256 256)" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="28" y="28" width="160" height="160" rx="18"/>
+    <path d="m57 76 32 32-32 32 M115 140h32"/>
+  </g>
+</svg>

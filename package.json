@@ -2,6 +2,7 @@
   "name": "devcontainer-ssh-terminal",
   "displayName": "Devcontainer SSH Terminal",
   "description": "Open an integrated terminal on the SSH host of your devcontainer.",
+  "icon": "images/icon.png",
   "publisher": "dvirtz",
   "version": "1.0.0",
   "license": "MIT",
