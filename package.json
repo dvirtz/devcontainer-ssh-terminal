@@ -4,7 +4,7 @@
   "description": "Open an integrated terminal on the SSH host of your devcontainer.",
   "icon": "images/icon.png",
   "publisher": "dvirtz",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "license": "MIT",
   "author": {
     "name": "Dvir Yitzchaki",
